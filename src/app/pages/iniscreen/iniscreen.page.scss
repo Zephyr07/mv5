@@ -1,0 +1,18 @@
+ion-content {
+  --background: var(--ion-color-primary);
+  background-size: 100% 100%;
+  ion-grid {
+    padding-top: 30%;
+    .signupBtn {
+      max-width: 70%;
+      margin: 15px auto;
+    }
+    .loginBtn {
+      max-width: 70%;
+      margin: auto;
+    }
+  }
+}
+.footer-md::before{
+  background: transparent;
+}

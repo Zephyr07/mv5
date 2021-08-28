@@ -1,0 +1,124 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons>
+      <ion-back-button defaultHref="/" text="" color="dark"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Nouveau compte</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="contentBG">
+  <form [formGroup]="signupForm">
+    <ion-grid>
+      <ion-row>
+        <ion-col size-xl="6" offset-xl="3">
+          <ion-item lines="none">
+            <ion-label>
+              <ion-icon name="person" color="dark"></ion-icon>
+            </ion-label>
+            <ion-input type="text" placeholder="Prénom" [formControl]="signupForm.controls['first_name']">
+            </ion-input>
+          </ion-item>
+          <p class="ion-no-margin invalidMessage"
+             *ngIf="!signupForm.controls.first_name.valid && !signupForm.controls.first_name.pending && (signupForm.controls.first_name.dirty || submitAttempt)">
+            Prénom requis.</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-xl="6" offset-xl="3">
+          <ion-item lines="none">
+            <ion-label>
+              <ion-icon name="person" color="dark"></ion-icon>
+            </ion-label>
+            <ion-input type="text" placeholder="Nom" [formControl]="signupForm.controls['last_name']">
+            </ion-input>
+          </ion-item>
+          <p class="ion-no-margin invalidMessage"
+             *ngIf="!signupForm.controls.last_name.valid && !signupForm.controls.last_name.pending && (signupForm.controls.last_name.dirty || submitAttempt)">
+            Nom requis.</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-xl="6" offset-xl="3">
+          <ion-item lines="none">
+            <ion-label>
+              <ion-icon name="call" color="dark"></ion-icon>
+            </ion-label>
+            <ion-input type="tel" placeholder="Téléphone" minlength="9" maxlength="9"
+                       [formControl]="signupForm.controls['phone']"></ion-input>
+          </ion-item>
+          <p class="ion-no-margin invalidMessage"
+             *ngIf="!signupForm.controls.phone.valid && !signupForm.controls.phone.pending && (signupForm.controls.phone.dirty || submitAttempt)">
+            Minimum 9 chiffres</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-xl="6" offset-xl="3">
+          <ion-item lines="none">
+            <ion-label style="overflow: visible;"><ion-icon name="male-female-outline" color="dark"></ion-icon></ion-label>
+            <ion-select placeholder="Genre" interface="popover" [formControl]="signupForm.controls['genre']">
+              <ion-select-option value="Femme">Femme</ion-select-option>
+              <ion-select-option value="Homme">Homme</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <p class="ion-no-margin invalidMessage"
+             *ngIf="!signupForm.controls.genre.valid && !signupForm.controls.genre.pending && (signupForm.controls.genre.dirty || submitAttempt)">
+            Sexe requis</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-xl="6" offset-xl="3">
+          <ion-item lines="none">
+            <ion-label>
+              <ion-icon name="mail" color="dark"></ion-icon>
+            </ion-label>
+            <ion-input type="email" placeholder="Email" [formControl]="signupForm.controls['email']"></ion-input>
+          </ion-item>
+          <p class="ion-no-margin invalidMessage"
+             *ngIf="!signupForm.controls.email.valid && !signupForm.controls.email.pending && (signupForm.controls.email.dirty || submitAttempt)">
+            Email requis.</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-xl="6" offset-xl="3">
+          <ion-item lines="none">
+            <ion-label>
+              <ion-icon name="lock-closed" color="dark"></ion-icon>
+            </ion-label>
+            <ion-input type="password" placeholder="Mot de passe" ngModel name="password" clearOnEdit="false"
+                       [formControl]="signupForm.controls['password']"></ion-input>
+          </ion-item>
+          <p class="ion-no-margin invalidMessage"
+             *ngIf="!signupForm.controls.password.valid && !signupForm.controls.password.pending && (signupForm.controls.password.dirty || submitAttempt)">
+            Le mot de passe doivent comporter au moins 8 caractères et doivent contenir un chiffre, un caractère et un caractère spécial.</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-xl="6" offset-xl="3">
+          <ion-item lines="none">
+            <ion-label>
+              <ion-icon name="lock-closed" color="dark"></ion-icon>
+            </ion-label>
+            <ion-input type="password" placeholder="Confirmer mot de passe" clearOnEdit="false"
+                       [formControl]="signupForm.controls['confirm_password']"></ion-input>
+          </ion-item>
+          <p class="ion-no-margin invalidMessage"
+             *ngIf="!signupForm.controls.confirm_password.valid && !signupForm.controls.confirm_password.pending && (signupForm.controls.confirm_password.dirty || submitAttempt)">
+            Le mot de passe doivent comporter au moins 8 caractères et doivent contenir un chiffre, un caractère et un caractère spécial</p>
+          <p  class="ion-no-margin invalidMessage"
+              *ngIf="signupForm.controls.confirm_password.value!= '' && signupForm.controls.confirm_password.value != signupForm.controls.password.value">
+            Les mots de passes sont différents
+          </p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" color="secondary" (click)="register()"
+                      [disabled]="!signupForm.valid || (signupForm.controls.confirm_password.value!= '' && signupForm.controls.confirm_password.value != signupForm.controls.password.value)" shape="round">
+            Créer mon compte
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

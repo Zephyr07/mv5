@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">
+      <img src="../../../assets/img/lgo.png" style="height: 50px;" />
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <!--ion-slides pager [options]="slideOptsOne">
+      <ion-slide *ngFor="let slider of mainSlider">
+          <img src="../../../assets/img/banners/{{slider.banner_image}}">
+      </ion-slide>
+  </ion-slides-->
+  <img src="../../../assets/img/pub_ici.jpg">
+  <!--div class="container ion-padding-right paddingTop_8"-->
+  <div class="container ion-padding-right" style="margin-top: -3px">
+    <div class="scroll" scrollX="true">
+      <div class="catScroll" *ngFor="let i of typeEntreprises"
+           routerLink="entreprise-listing/{{i.id}}/{{i.nom}}">
+        <img src="{{i.image}}" width="55">
+        <p>{{i.nom | titlecase}}</p>
+      </div>
+    </div>
+  </div>
+  <ion-row class="bannerRow" *ngIf="promotions.length>0">
+    <ion-col size="12">
+      <h5 class="titre">Promotions</h5>
+    </ion-col>
+    <ion-col size="12">
+      <ion-slides pager [options]="slideOptsOne" >
+        <ion-slide *ngFor="let p of promotions">
+          <img class="image-slide" [src]="p.image">
+        </ion-slide>
+      </ion-slides>
+    </ion-col>
+    <ion-col class="ion-text-right" (click)="promotionsLinsting()">
+      <ion-button size="small" color="warning">Toutes les promos</ion-button>
+    </ion-col>
+
+  </ion-row>
+
+  <ion-row class="bannerRow">
+    <ion-col size="12">
+      <h5 class="titre">Marques</h5>
+    </ion-col>
+    <ion-col size="6" *ngFor="let m of marques">
+      <ion-card style="margin : 5px !important;" routerLink="offre-listing/m/{{m.id}}/{{m.nom}}">
+        <img [src]="m.image" />
+      </ion-card>
+    </ion-col>
+    <ion-col class="ion-text-right">
+      <ion-button size="small" color="warning" routerLink="marques-listing">Toutes les marques</ion-button>
+    </ion-col>
+  </ion-row>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="search()">
+    <ion-fab-button>
+      <ion-icon name="search"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
